@@ -1,0 +1,133 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+
+    <title>JS array to HTML table</title>
+    <meta name="description" content="array to table demo by mtf">
+    <style>
+        table {
+            border-spacing:1px;
+            border: 10px;
+            width: 70%;
+            height: 50%;
+            position: relative;
+            left: 15%;
+            align-content: center;
+        }
+
+        tr {
+            height: 100px;
+            align-content: space-around;
+            border-collapse: collapse;
+        }
+
+        td {
+           // align-content:inherit;     
+            }
+       </style>
+    <style>
+        .td_class_Sq {
+            background-image: url("./res/white_rect.jpg");
+            background-size: 50px 60px;
+        }
+
+        .td_class {
+            background-color: yellow;
+            background-image: url("./res/black_rect.jpg");
+            background-size: 50px 60px;
+        }
+    </style>
+</head>
+
+<body>
+    <div> Here goes the MENU to select task level</div>
+    <p>When 11you are ready click me! </p>
+    <!--<p> {{taskLevel.Table["row_clr"]}} </p>
+    {{row_clrs[0]}}
+    -->
+    <!--- ng-class="category==16 ? 'icon-pfeil_unten' : 'icon-pfeil-oben'" 
+        ng-class="{true: 'icon-pfeil_unten', false: 'icon-pfeil-oben'}[category == 16]"-->
+    <div ng-controller="ctrlSquares" >
+        <div>
+            <label><input type="radio" name="Difficulty" ng-click="setDifficultyLevel('1')" /> Level 1</label>
+            <label><input type="radio" name="Difficulty" ng-click="setDifficultyLevel('2')" /> Level 2</label>
+            <label><input type="radio" name="Difficulty" ng-click="setDifficultyLevel('3')" /> Level 3</label>
+            <label><input type="radio" name="Difficulty" ng-click="setDifficultyLevel('4')" /> Level 4</label>
+            <!-- <pre>Selected Task Level :: {{taskLevel}} </pre>-->
+        </div>
+        <div ng-click="Draw() " style="background-color:darkgray">
+            <p> Click me! </p> <!--this should be there to create clickable region otherwise table will NOT get displayed-->
+            <table id="myTable">
+                <tr ng-repeat="row in array_Table track by $index" style=background-color:{{row_clrs[$index]}}>
+                    <td ng-repeat="col in row track by $index" align="center" ng-show ='col == 1'> <img src="./res/white_rect.jpg" />  </td>
+
+                    <!--<td ng-repeat="col in row track by $index" align="center" ng-if='col == 1'> <img src="./res/white_rect.jpg" />  </td> -->
+
+                   <!--  <td ng-repeat="col in row track by $index" align="center" ng-class="({{col}} == '1')? 'td_class_Sq': 'td_class;'"> {{col}}  </td> -->
+
+                    <!--<td ng-repeat="col in row track by $index"> <span ng-class="({{col}} == '1')? 'td_class_Sq': 'td_class;'">{{col}} </span> </td> -->
+                    <!-- <td ng-repeat="col in row track by $index" ng-class="{td_class_Sq : {{col}}  > 0"> {{col}} </td> -->
+                </tr>
+            </table>
+        </div>
+        {{debugMsg}}
+
+        </div>
+
+
+        <script>
+            //document.addEventListener("click", Draw());
+        </script>
+
+        <script>
+            /*
+
+             #rectangle: width: 200px;
+            height: 100px;
+            background: white;
+          
+            <p> in side table</p>
+                    <td ng-if="$odd" style="background-color:#f1f1f1">
+                        {{ x.Name }}
+                    </td>
+                    <td ng-if="$even">
+                        {{ x.Name }}
+                    </td>
+                    <td ng-if="$odd" style="background-color:#f1f1f1">
+                        {{ x.Country }}
+                    </td>
+                    <td ng-if="$even">
+                        {{ x.Country }}
+                    </td>
+
+            */
+            /*
+                        $scope.names = [
+                    { Name: 'Jani', Country: 'Norway' },
+                    { Name: 'Hege', Country: 'Sweden' },
+                    { Name: 'Kai', Country: 'Denmark' }
+                ];
+
+
+            var rootApp = angular.module('rootApp', []);
+
+            rootApp.controller('ctrlSquares', function ($scope) {
+                $scope.message = 'from Squares.HTML445646554 Controller';
+
+                $scope.Draw = function () {
+                $scope.message = 'from ctrlSquares in Draw()';
+
+                $scope.rows = [
+                      { col: [1, 2, 3, 4] },
+                      { col: [5, 6, 7] },
+                      { col: [9, 10, 11, 12] }
+                    ];
+                  }
+            });
+            */
+        </script>
+    <!-- <script src="./js/CountSquares.js"></script> -->
+    <script src="ng.js"></script>
+</body>
+</html>
